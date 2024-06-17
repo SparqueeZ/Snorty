@@ -1,0 +1,7 @@
+# Production folders
+rules
+rules/rules.txt
+archives
+node_modules
+data.json
+.env

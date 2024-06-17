@@ -1,0 +1,33 @@
+@import "./base.css";
+#app,
+html,
+:root,
+body {
+  --sidebar-width: 25%;
+  /* Couleurs */
+  --button-bg: #00c6de;
+  --button-hover-bg: #00a0bd;
+  --button-disabled-bg: #f7f7f7;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+a,
+p {
+  text-decoration: none;
+  color: inherit;
+}
+
+textarea {
+  font-size: 14px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+textarea.text {
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  height: 1.2rem;
+  resize: none;
+  text-wrap: nowrap;
+}/*# sourceMappingURL=main.css.map */

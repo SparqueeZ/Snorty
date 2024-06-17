@@ -1,0 +1,45 @@
+@import "./base.css";
+
+$gunmetal: #202a25ff;
+$iris: #5f4bb6ff;
+$vista-blue: #86a5d9ff;
+$fluorescent-cyan: #26f0f1ff;
+$tea-green: #c4ebc8ff;
+
+#app,
+html,
+:root,
+body {
+  --sidebar-width: 25%;
+
+  /* Couleurs */
+  --button-bg: #00c6de;
+  --button-hover-bg: #00a0bd;
+  --button-disabled-bg: #f7f7f7;
+
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans JP", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
+a,
+p {
+  text-decoration: none;
+  color: inherit;
+}
+
+textarea {
+  font-size: 14px;
+  font-family: "Noto Sans JP", sans-serif;
+  &.text {
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    height: 1.2rem;
+    resize: none;
+    text-wrap: nowrap;
+  }
+}

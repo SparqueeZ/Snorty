@@ -1,0 +1,66 @@
+{
+  "action": "alert",
+  "protocol": "tcp",
+  "srcIp": ["any"],
+  "srcPort": ["any"],
+  "destIp": ["$HOME_NET"],
+  "destPort": ["445"],
+  "options": [
+    {
+      "name": "msg",
+      "value": "\"ET POLICY SMB2 NT Create AndX Request For a DLL File - Possible Lateral Movement\""
+    },
+    {
+      "name": "flow",
+      "value": "established,to_server"
+    },
+    {
+      "name": "content",
+      "value": "\"SMB\"",
+      "offset": 0,
+      "depth": 8,
+      "within": 0,
+      "distance": 0,
+      "no_case": false,
+      "uri": false
+    },
+    {
+      "name": "content",
+      "value": "\"|05 00|\"",
+      "offset": 0,
+      "depth": 0,
+      "within": 2,
+      "distance": 8,
+      "no_case": false,
+      "uri": false,
+      "endswith": false
+    },
+    {
+      "name": "content",
+      "value": "\"|00 2E 00|d|00|l|00|l|00|\"",
+      "offset": 0,
+      "depth": 0,
+      "within": 0,
+      "distance": 0,
+      "no_case": true,
+      "uri": false,
+      "endswith": false
+    },
+    {
+      "name": "classtype",
+      "value": "bad-unknown"
+    },
+    {
+      "name": "sid",
+      "value": "2025709"
+    },
+    {
+      "name": "rev",
+      "value": "2"
+    },
+    {
+      "name": "metadata",
+      "value": "affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target SMB_Client, created_at 2018_07_16, deployment Internal, former_category POLICY, signature_severity Minor, updated_at 2019_07_26"
+    }
+  ]
+}

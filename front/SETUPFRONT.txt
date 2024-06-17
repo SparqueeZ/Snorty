@@ -1,0 +1,7 @@
+# To work properly, Snorty need to have an .env file
+# You can rename this file to ".env"
+
+# API address (IP or URI)
+# VITE_SELKSC_API_URL=http://localhost:3000
+
+#@SparqueeZ🍕
