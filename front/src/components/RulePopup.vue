@@ -1,9 +1,9 @@
 <template>
-  <div class="test">
+  <div class="rulePopup">
     <transition name="bg">
       <section v-if="showBg" class="bluredLayer"></section>
     </transition>
-    <transition name="body">
+    <transition :name="getTransitionName()">
       <div v-if="showBody" class="body" ref="RulePopup">
         <div class="ruleTitle">
           <textarea class="ruleName" @input="changeRulename($event)">{{
@@ -11,18 +11,10 @@
           }}</textarea>
           <div class="ruleInfos">
             <p>
-              SID du nouveau RuleSet :
-              <!-- <a
-                :href="`https://172.30.4.145/rules/rule/pk/${currentRule?.newSid}/`"
-                >{{ currentRule?.newSid }}</a
-              > -->
-            </p>
-            <p>
               SID de l'ancien RuleSet :
-              <a
-                :href="`https://172.30.4.145/rules/rule/pk/${currentRule?.sid}/`"
-                >{{ currentRule?.sid }}</a
-              >
+              <a :href="`${SELKSURL}/rules/rule/pk/${currentRule?.sid}/`">{{
+                currentRule?.sid
+              }}</a>
             </p>
           </div>
         </div>
@@ -41,6 +33,9 @@
             @click="onlineStore.importRuleModifier(parseAlert(importArea))"
           >
             Importer
+          </button>
+          <button @click="pasteToImportSection()">
+            Importer depuis le Clipboard
           </button>
         </div>
 
@@ -68,16 +63,33 @@ import RuleModifier from "@/components/ruleManager/RuleModifier.vue";
 import { useRuleStore } from "@/stores/RulePopup";
 import { onClickOutside } from "@vueuse/core";
 import { useOnlineStore } from "@/stores/onlineDataStore";
+import { useAuthStore } from "@/stores/auth";
 import Icon from "./lib/Icon.vue";
 
+const SELKSURL = import.meta.env.VITE_SELKS_URL;
+
+const authStore = useAuthStore();
 const ruleStore = useRuleStore();
 const onlineStore = useOnlineStore();
-const importRulesSection = ref(false);
 const importArea = ref();
 
 const changeRulename = debounce((event) => {
   onlineStore.updateRuleName(event.target.value);
 }, 700);
+
+const getTransitionName = () => {
+  if (authStore.user.preferences.transitions) {
+    return "body";
+  }
+  return "none";
+};
+
+const pasteToImportSection = () => {
+  navigator.clipboard.readText().then((text) => {
+    console.log(text);
+    importArea.value = text;
+  });
+};
 
 function parseAlert(alertString) {
   const parts = alertString.split(" ");

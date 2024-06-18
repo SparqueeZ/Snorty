@@ -159,9 +159,7 @@
         </p>
         <p class="name">{{ alertItem.alert.signature }}</p>
       </div>
-      <a
-        :href="`https://172.30.4.145/rules/rule/pk/${alertItem.alert.signature_id}/`"
-      >
+      <a :href="`${SELKSURL}/rules/rule/pk/${alertItem.alert.signature_id}/`">
         <p class="SID">
           SID : <mark class="mark">{{ alertItem.alert.signature_id }}</mark>
         </p>
@@ -260,6 +258,8 @@ import { useRuleStore } from "@/stores/RulePopup";
 import { useOnlineStore } from "@/stores/onlineDataStore";
 import { useAuthStore } from "@/stores/auth";
 
+const SELKSURL = import.meta.env.VITE_SELKS_URL;
+
 const onlineStore = useOnlineStore();
 const contextMenu = useContextMenu();
 const authStore = useAuthStore();
@@ -309,21 +309,21 @@ const contextMenus = ref([
         name: "Recherche par IP SRC",
         icon: "search",
         id: 0,
-        link: `https://172.30.4.145/evebox/#/events?q=src_ip%3A"${props.alertItem.src_ip}"`,
+        link: `${SELKSURL}/evebox/#/events?q=src_ip%3A"${props.alertItem.src_ip}"`,
       },
       {
         group: "search",
         name: "Recherche par IP DST",
         icon: "search",
         id: 1,
-        link: `https://172.30.4.145/evebox/#/events?q=dest_ip%3A"${props.alertItem.dest_ip}"`,
+        link: `${SELKSURL}/evebox/#/events?q=dest_ip%3A"${props.alertItem.dest_ip}"`,
       },
       {
         group: "search",
         name: "Recherche par SID",
         icon: "search",
         id: 2,
-        link: `https://172.30.4.145/evebox/#/events?q=signature.alert%3A"${props.alertItem.alert.signature_id}"`,
+        link: `${SELKSURL}/evebox/#/events?q=signature.alert%3A"${props.alertItem.alert.signature_id}"`,
       },
     ],
   },
@@ -514,7 +514,7 @@ function getURL(signature, ip_src, port_src, ip_dest, port_dest, type) {
   if (type !== "precise") signature = "";
   if (type === "precise") type = "events";
 
-  return `https://172.30.4.145/evebox/#/${type}?q=${ip_src_query}${plusOrNot}${ip_dest_query}${plusOrNot2}${signature}`;
+  return `${SELKSURL}/evebox/#/${type}?q=${ip_src_query}${plusOrNot}${ip_dest_query}${plusOrNot2}${signature}`;
 }
 const alerts = ref(props.alerts);
 if (props.alerts) {

@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
+const PreferencesSchema = new mongoose.Schema({
+  transitions: { type: Boolean },
+});
+
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -14,6 +18,10 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     required: true,
+  },
+  preferences: {
+    type: PreferencesSchema,
+    default: () => ({}),
   },
 });
 

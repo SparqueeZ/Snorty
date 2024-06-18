@@ -1,11 +1,11 @@
-# To work properly, Snorty need to have an .env file
+# To work properly, Snorty API need to have an .env file
 # You can rename this file to ".env"
 
 # WARNING : Uncomment this section and replace 'adminSnorty' with your admin password to init the back-end.
 # INIT_ADMIN_PASSWORD = adminSnorty
 
 # WARNING : Uncomment this section and replace 'http://localhost:28090' with your front-end address.
-# FRONT_FULL_ADDRESS=http://localhost:28090
+# FRONT_FULL_ADDRESS=http://localhost
 
 JWT_SECRET=jwtsupersecretdelamortquitue
 # Not used anymore
@@ -15,8 +15,7 @@ API_PORT=3000
 MONGO_USER=snortyUser
 MONGO_PASSWORD=snortyPassword
 
-
-PRODUCTION_MODE=false
+PRODUCTION_MODE=true
 
 MONGO_INTERNAL_NAME=mongo
 MONGO_INTERNAL_PORT=27017

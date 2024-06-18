@@ -1,9 +1,8 @@
 import axios from "axios";
 
 const checkAPIURL = (APIURL) => {
-  console.log(APIURL);
   if (!APIURL) {
-    window.alert("URL de l'API non renseignée.");
+    window.alert("URL de l'API non renseignée : ", APIURL);
   }
 
   return APIURL;

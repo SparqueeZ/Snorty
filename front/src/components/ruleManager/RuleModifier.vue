@@ -644,6 +644,9 @@ const downloadRules = () => {
       display: flex;
       gap: 1rem;
       .nameAndDesc {
+        .text {
+          height: 1.5rem;
+        }
         .modifierAddMethod {
           border-radius: 0.2rem;
           color: #fff;

@@ -62,6 +62,11 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 
+  if (to.name === "LoginView" && authStore.user) {
+    console.warn("User already signed in.");
+    return next({ name: "Home" });
+  }
+
   next();
 });
 
