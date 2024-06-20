@@ -7,6 +7,8 @@ const {
 } = require("../utils/fileUtils");
 
 exports.downloadRules = (req, res) => {
+  console.log(`${getReadableTimestampParis()} GET Request : downloadRules`);
+
   const archivesDirectory = "archives";
 
   try {
@@ -55,6 +57,8 @@ exports.downloadRules = (req, res) => {
 };
 
 exports.exportRule = (req, res) => {
+  console.log(`${getReadableTimestampParis()} POST Request : exportRule`);
+
   const ruleData = req.body;
   writeRulesToFile(ruleData, res);
 };

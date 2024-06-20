@@ -459,15 +459,14 @@ function addRuleOption(modifierIndex, type) {
 }
 
 // Fonction permettant de mettre à jour un modifier avec toutes les informations.
-function updateRuleModifier(modifier, index) {
+const updateRuleModifier = debounce((modifier, index) => {
   onlineStore.updateRuleModifier(modifier, index);
-}
+}, 700);
 
 // Fonction permettant de mettre à jour les informations de l'adresse ip + ports
 function updateIpsData(modifierIndex, type, event) {
   const str = event.target.value;
   const arr = str.split(",").map((item) => item.trim());
-  console.log(arr);
   updateOption(modifierIndex, -1, type, arr);
 }
 

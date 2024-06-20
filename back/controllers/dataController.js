@@ -1,7 +1,9 @@
 const SELKSAlert = require("../models/SELKSAlert");
 const SELKSRule = require("../models/SELKSRule");
+const { getReadableTimestampParis } = require("../utils/dateUtils");
 
 exports.getAlerts = async (req, res) => {
+  console.log(`${getReadableTimestampParis()} GET Request : getAlerts`);
   try {
     const alerts = await SELKSAlert.find();
     res.json(alerts);
@@ -13,6 +15,7 @@ exports.getAlerts = async (req, res) => {
 
 exports.storeAlert = async (req, res) => {
   const { alert } = req.body;
+  console.log(`${getReadableTimestampParis()} POST Request : storeAlerts`);
 
   try {
     const newAlert = new SELKSAlert(alert);
@@ -25,6 +28,8 @@ exports.storeAlert = async (req, res) => {
 };
 
 exports.getRules = async (req, res) => {
+  console.log(`${getReadableTimestampParis()} GET Request : getRules`);
+
   try {
     const rules = await SELKSRule.find();
     res.json(rules);
@@ -36,6 +41,8 @@ exports.getRules = async (req, res) => {
 
 exports.storeRule = async (req, res) => {
   const data = req.body;
+
+  console.log(`${getReadableTimestampParis()} POST Request : storeRule`);
 
   try {
     const newRule = new SELKSRule(data);
@@ -52,7 +59,7 @@ exports.storeRule = async (req, res) => {
 exports.updateRule = async (req, res) => {
   const { rule } = req.body;
 
-  console.log("Rule received for update:", rule);
+  console.log(`${getReadableTimestampParis()} POST Request : updateRule`);
 
   if (!rule.sid) {
     return res.status(400).json({ error: "sid is required" });
@@ -87,6 +94,8 @@ exports.updateRule = async (req, res) => {
 
 exports.updateAlert = async (req, res) => {
   const { id, alert } = req.body;
+
+  console.log(`${getReadableTimestampParis()} POST Request : updateAlert`);
 
   // Validation pour s'assurer que les champs obligatoires sont présents
   const requiredFields = [
@@ -128,6 +137,8 @@ exports.updateAlert = async (req, res) => {
 
 exports.removeAlert = async (req, res) => {
   const { id } = req.body;
+
+  console.log(`${getReadableTimestampParis()} POST Request : removeAlert`);
 
   try {
     const deletedAlert = await SELKSAlert.findOneAndDelete({ _id: id });

@@ -6,6 +6,22 @@ export const useAuthStore = defineStore("auth", {
     user: null,
   }),
   actions: {
+    async registerUser(userData, redirection) {
+      try {
+        const response = await axios.post("/api/auth/register", userData);
+        if (redirection) {
+          this.user = response.data.user;
+
+          const loginResponse = await axios.post("/api/auth/login", {
+            username: userData.username,
+            password: userData.password,
+          });
+          this.user = loginResponse.data.user;
+        }
+      } catch (error) {
+        console.error("Erreur lors du register : ", error);
+      }
+    },
     async loginUser(credentials) {
       try {
         const response = await axios.post("/api/auth/login", credentials);

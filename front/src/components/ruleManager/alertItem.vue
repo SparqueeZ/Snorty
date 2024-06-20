@@ -135,6 +135,7 @@
           @click="
             alertItem.confirmDelete = !alertItem.confirmDelete;
             onlineStore.removeAlert(index);
+            emits('reloadAlerts');
           "
         >
           <Icon name="check" />
@@ -272,6 +273,8 @@ const props = defineProps({
   index: Number,
   alerts: Array,
 });
+
+const emits = defineEmits(["reloadAlerts"]);
 
 const urlHash = ref(null);
 const contextMenus = ref([
@@ -518,7 +521,7 @@ function getURL(signature, ip_src, port_src, ip_dest, port_dest, type) {
 }
 const alerts = ref(props.alerts);
 if (props.alerts) {
-  console.log(props.alerts);
+  // console.log(props.alerts);
   props.alerts.forEach((item) => {
     item.editMode = false;
     item.showSearchContext = false;

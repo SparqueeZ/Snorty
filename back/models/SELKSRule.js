@@ -39,13 +39,11 @@ SELKSRuleSchema.pre("save", async function (next) {
   const doc = this;
   if (doc.isNew) {
     try {
-      console.log("Pre-save middleware triggered");
       const counter = await Counter.findByIdAndUpdate(
         { _id: "new_sid" },
         { $inc: { seq: 1 } },
         { new: true, upsert: true, returnDocument: "after" }
       );
-      console.log("Counter after update:", counter);
       doc.new_sid = counter.seq;
       next();
     } catch (error) {

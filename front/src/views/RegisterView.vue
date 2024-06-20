@@ -29,8 +29,6 @@ const role = ref("");
 const authStore = useAuthStore();
 const router = useRouter();
 
-console.log(authStore.user.role);
-
 const handleRegister = async () => {
   try {
     await authStore.registerUser(

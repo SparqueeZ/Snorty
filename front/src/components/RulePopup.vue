@@ -338,7 +338,7 @@ onMounted(() => {
 }
 
 .body {
-  width: calc(60% - 2rem);
+  width: calc(65% - 2rem);
   max-height: calc(80%);
   overflow: auto;
   // aspect-ratio: 16/9;

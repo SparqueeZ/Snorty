@@ -94,6 +94,9 @@ export const useOnlineStore = defineStore({
     // Alerts
     addAlert(data) {
       storeAlert(data);
+      setTimeout(() => {
+        this.fetchAlerts();
+      }, 200);
     },
     removeAlert(index) {
       const id = this.alerts[index]._id;

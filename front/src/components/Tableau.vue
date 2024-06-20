@@ -27,6 +27,7 @@
         :alertItem="item"
         :alerts="alerts"
         :index="index"
+        @reloadAlerts="emits('reloadAlerts')"
       >
       </alertItem>
 
@@ -51,6 +52,8 @@ const props = defineProps({
   alerts: Array,
   autoComment: Boolean,
 });
+
+const emits = defineEmits(["reloadAlerts"]);
 
 props.alerts.forEach((item) => {
   item.editMode = false;
